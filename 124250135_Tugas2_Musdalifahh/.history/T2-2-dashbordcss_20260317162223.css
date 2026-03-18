@@ -1,0 +1,143 @@
+* {
+  font-family: sans-serif;
+}
+
+/* header */
+.jumbotron {
+  padding-top: 40px;
+  background-color: #0f0f0f;
+  margin: 0px;
+  color: #ffffff;
+  text-align: center;
+  border-bottom: 2px solid #2c2c2c;
+}
+.teksnikmati {
+  padding-top: 5%;
+}
+.jumbotron h1 {
+  font-size: 40px;
+  font-weight: bold;
+  margin: 0px;
+}
+.jumbotron p {
+  padding: 3% 30%;
+  margin: 0%;
+  color: #b3b3b3;
+}
+.red {
+  color: #e50914;
+}
+
+/* main */
+main {
+  min-height: 100vh;
+  padding: 50px 5% 5% 5%;
+  background-color: #0f0f0f;
+}
+.now {
+  color: aliceblue;
+}
+.listfilm {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  gap: 3px;
+  margin-bottom: 60px;
+}
+/* main - card film */
+.film {
+  color: #b3b3b3;
+  background-color: #231616;
+  border-radius: 10px;
+  margin: 3px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: grid;
+  grid-template-columns: 35% auto;
+}
+.cover {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 3/4;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+.isifilm {
+  padding: 15px 15px 0px 15px;
+}
+.judul {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+  color: #ffffff;
+}
+.genre {
+  font-size: 14px;
+  color: #e50914;
+  margin: 0;
+  padding-top: 1px;
+}
+.durasi {
+  color: #777777;
+  font-size: 14px;
+  margin: 0;
+  padding-top: 10px;
+  line-height: 1, 6em;
+}
+.deskripsi {
+  font-size: 14px;
+  margin: 0;
+  line-height: 1.6em;
+  padding-top: 1, 6em;
+}
+.harga {
+  font-size: 14px;
+  color: #777777;
+  margin-top: 15px;
+  padding: 10px;
+  text-align: center;
+  border-radius: 25px;
+  border: 1.5px solid #777777;
+}
+
+/* main- pesan */
+#pesan button {
+  background-color: #e50914;
+  padding: 15px 50px;
+  border-radius: 10px;
+  color: #eaefef;
+  margin: 5px;
+  text-decoration: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border: 1px solid #e50914;
+}
+#pesan {
+  text-align: center;
+}
+#pesan button:hover {
+  background-color: #b20710;
+}
+
+/* responsive HP */
+@media screen and (max-width: 480px) {
+  .listfilm {
+    grid-template-columns: 100%;
+    gap: 15px;
+  }
+  .film {
+    display: flex;
+    flex-direction: column;
+  }
+  .cover {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 3/4;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 0px;
+    border-top-right-radius: 10px;
+  }
+  header p {
+    padding: 3% 10%;
+  }
+  #pesan {
+    margin-bottom: 10%;
+  }
+}

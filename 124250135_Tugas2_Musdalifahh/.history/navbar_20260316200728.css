@@ -1,0 +1,18 @@
+nav {
+  width: 100%;
+  padding: 13px 30px;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  background-color: #231616;
+  color: #ffffff;
+  position: fixed;
+  justify-content: space-between;
+  box-shadow:  0 4px 20px rgba(0, 0, 0, 0.742);
+  z-index: 10;
+}
+nav span {
+  margin-left: 2px; 
+  font-size: 14px;
+}
+
