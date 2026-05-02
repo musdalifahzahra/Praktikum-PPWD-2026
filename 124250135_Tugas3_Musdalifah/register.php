@@ -23,6 +23,7 @@ if ($cara_registrasi == 2 && (isset($_POST["registrasi"]))) {
   foreach ($users as $row):
     if ($email == $row["email"] && $username == $row["username"]) {
       $_SESSION["registrasi"] = true;
+      $_SESSION["username"] = $username;
       header("location: dashbord.php");
       exit();
     }
@@ -47,6 +48,7 @@ else if (isset($_POST["registrasi"])) {
   if (!$email_terpakai && !$username_terpakai) {
     if (insert_users($_POST) > 0) {
       $_SESSION["registrasi"] = true;
+      $_SESSION["username"] = $username;
       header("location: dashbord.php");
       exit();
     }
@@ -111,7 +113,6 @@ else if (isset($_POST["registrasi"])) {
           <?php } else { ?>
             <button type="submit" name="registrasi">Login</button><br>
             <span style="text-align: center;">Haven't an Account? <a href="register.php?login=1">Sign Up</a></span>
-
           <?php } ?>
 
         </div>

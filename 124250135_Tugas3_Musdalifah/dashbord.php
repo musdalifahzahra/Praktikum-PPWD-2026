@@ -1,5 +1,11 @@
 <?php
 session_start();
+require "functions.php";
+
+if (!$_SESSION["registrasi"]) {
+  header("location: register.php");
+  exit();
+}
 ?>
 
 <!doctype html>
@@ -25,7 +31,7 @@ session_start();
           <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
           <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
         </svg>
-        <span> <?php echo $_SESSION["email"]; ?> </span>
+        <span> <?php echo $_SESSION["username"]; ?> </span>
       </div>
     </nav>
 
@@ -44,66 +50,29 @@ session_start();
 
   <main>
     <p class="now">Now Playing</p>
+    <!-- php array list film -->
+    <?php
+    $query = "SELECT * FROM film";
+    $listfilm = read($query);
+    ?>
+
     <section class="listfilm">
-      <!-- film 1 -->
-      <article class="film">
-        <img src="coverFilm/goat.jpg" alt="" class="cover" />
-        <div class="isifilm">
-          <p class="judul">Goat</p>
-          <p class="genre">Animasi/ Komedi/ Keluarga/ Olahraga</p>
-          <p class="durasi">± 100 menit <br />Tayang pukul 14.30 WIB</p>
-          <p class="deskripsi">Will, kambing muda bertubuh kecil, bermimpi menjadi bintang Roarball di dunia yang didominasi hewan besar. Ia berjuang membuktikan diri dan mematahkan stereotip.</p>
-          <p class="harga">Rp.80.000</p>
-        </div>
-      </article>
-      <!-- film 2 -->
-      <article class="film">
-        <img src="coverFilm/jumbo.jpg" alt="" class="cover" />
-        <div class="isifilm">
-          <p class="judul">Jumbo</p>
-          <p class="genre">Animasi/ Keluarga/ Petualangan</p>
-          <p class="durasi">±102 menit <br />Tayang pukul 11.00 WIB</p>
-          <p class="deskripsi">Don, anak bertubuh besar yang sering diremehkan, membuktikan kemampuannya melalui pertunjukan bakat. Kisah hangat tentang kepercayaan diri dan persahabatan.</p>
-          <p class="harga">Rp.60.000</p>
-        </div>
-      </article>
-      <!-- film 3 -->
-      <article class="film">
-        <img src="coverFilm/rangga.png" alt="" class="cover" />
-        <div class="isifilm">
-          <p class="judul">Rangga & Cinta</p>
-          <p class="genre">Romantis/ Musikal/ Remaja</p>
-          <p class="durasi">±119 menit <br />Tayang pukul 15.45 WIB</p>
-          <p class="deskripsi">Kisah cinta remaja SMA yang penuh puisi dan konflik perasaan, dikemas dengan sentuhan musikal modern. Nostalgia klasik dengan nuansa yang lebih segar.</p>
-          <p class="harga">Rp.70.000</p>
-        </div>
-      </article>
-      <!-- film 4 -->
-      <article class="film">
-        <img src="coverFilm/five.png" alt="" class="cover" />
-        <div class="isifilm">
-          <p class="judul">Five Nights at Freddy's 2</p>
-          <p class="genre">Horor/ Thriller</p>
-          <p class="durasi">±110 menit <br />Tayang pukul 21.00 WIB</p>
-          <p class="deskripsi">Teror animatronik kembali menghantui penjaga malam dengan misteri yang lebih gelap dan mencekam. Ketegangan meningkat saat rahasia lama perlahan terungkap.</p>
-          <p class="harga">Rp.70.000</p>
-        </div>
-      </article>
-      <!-- film 5 -->
-      <article class="film">
-        <img src="coverFilm/sore.jpeg" alt="" class="cover" />
-        <div class="isifilm">
-          <p class="judul">Sore: Istri dari Masa Depan</p>
-          <p class="genre">Romantis/ Drama/ Fantasi</p>
-          <p class="durasi">±105 menit <br />Tayang pukul 19.00 WIB</p>
-          <p class="deskripsi">Seorang wanita misterius dari masa depan datang sebagai istri seorang pria dan berusaha mengubah takdir hidupnya. Kisah romansa penuh emosi tentang pilihan, waktu, dan kesempatan kedua.</p>
-          <p class="harga">Rp.65.000</p>
-        </div>
-      </article>
+      <?php foreach($listfilm as $film): ?>
+        <article class="film">
+          <img src="<?= $film["cover"]; ?>" alt="<?= $film["judul"]; ?>" class="cover" />
+          <div class="isifilm">
+            <p class="judul"><?= $film["judul"]; ?></p>
+            <p class="genre"><?= $film["genre"]; ?></p>
+            <p class="durasi"><?= "±" . $film["durasi"] . " Menit"; ?><br/>Tayang pukul <?= $film["jam_tayang"]; ?></p>
+            <p class="deskripsi"><?= $film["deskripsi"]; ?></p>
+            <p class="harga">Rp<?= number_format($film["harga"], 0, ',', '.'); ?></p>
+          </div>
+        </article>
+      <?php endforeach; ?>
     </section>
 
     <!-- pesan sekarang -->
-    <form action="T2-3-formpesan.php" method="post">
+    <form action="formpesan.php" method="post">
       <div id="pesan">
         <button type="submit">Pesan Sekarang</button>
       </div>

@@ -39,8 +39,8 @@ main {
 }
 .listfilm {
   display: grid;
-  grid-template-columns: 50% 50%;
-  gap: 3px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
   margin-bottom: 60px;
 }
 /* main-cardFilm */
@@ -116,8 +116,15 @@ main {
   background-color: #b20710;
 }
 
+/* tab */
+@media screen and (max-width: 1156px) {
+  .listfilm {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* responsive HP */
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 720px) {
   .listfilm {
     grid-template-columns: 100%;
     gap: 15px;
