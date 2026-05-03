@@ -1,10 +1,6 @@
 <?php
 session_start();
-require "functions.php";
-$id_pesanan = $_GET["id_pesanan"];
-
 ?>
-
 
 <!doctype html>
 <html lang="en">
@@ -34,17 +30,15 @@ $id_pesanan = $_GET["id_pesanan"];
 
 
     <div class="latar">
-        <?php if (delete($id_pesanan) > 0) {
-        ?>
-            <div class="isiberhasil d-flex justify-content-center align-items-center">
-                <!-- form -->
-                <form action="dashbord.php" class="berhasil" method="post">
-                    <h4 class="bold fw-bold">Pemesanan Berhasil Dihapus</h4>
-                    <p class="pesan">Pengembalian dana sedang disproses. Cek email secara berkala!</p>
-                    <button type="submit">kembali</button>
-                </form>
-            </div>
-        <?php } ?>
+        <div class="isiberhasil d-flex justify-content-center align-items-center">
+            <!-- form -->
+            <?php $id_pesanan = $_GET["id_pesanan"]; ?>
+            <form action="invoice.php?id_pesanan=<?= $id_pesanan ?>" class="berhasil" method="post">
+                <h4 class="bold fw-bold">Pemesanan Tiket Berhasil</h4>
+                <p class="pesan">Tiket selanjutnya akan dikirimkan melalui email. Cek email secara berkala!</p>
+                <button type="submit">Detail Pemesanan</button>
+            </form>
+        </div>
     </div>
 
 </body>

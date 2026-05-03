@@ -11,7 +11,7 @@ $conn = mysqli_connect("localhost", "root", "", "pemesanan_tiket");
 // JANGAN LUPA PUBLIK REPO
 // JANGAN LUPA PUBLIK REPO
 
-// READ
+// SELECT
 function read_rows($query)
 {
     global $conn;
@@ -101,5 +101,13 @@ function update_pesanan($data)
               ";
 
     mysqli_query($conn, $query);
+    return mysqli_affected_rows($conn);
+}
+
+// DELETE
+function delete($id_pesanan)
+{
+    global $conn;
+    mysqli_query($conn, "DELETE FROM pesanan WHERE id = $id_pesanan");
     return mysqli_affected_rows($conn);
 }

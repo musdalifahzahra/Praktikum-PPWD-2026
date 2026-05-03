@@ -11,7 +11,7 @@ if (!$_SESSION["registrasi"]) {
 if (isset($_POST["pesan"])) {
   if (insert_pesanan($_POST) > 0) {
     $id_pesanan = read_row("SELECT * FROM pesanan ORDER BY id DESC LIMIT 1")["id"];
-    header("location: invoice.php?id_pesanan=$id_pesanan");
+    header("location: berhasil.php?id_pesanan=$id_pesanan");
     exit();
   } else {
     $error = true;
