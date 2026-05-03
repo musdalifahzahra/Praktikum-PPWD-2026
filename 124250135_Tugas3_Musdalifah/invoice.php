@@ -72,7 +72,7 @@ if (!$_SESSION["registrasi"]) {
       </div>
       <div class="aksi col-md-12">
         <a href="edit.php?id_pesanan=<?= $id_pesanan ?>">Edit Pesanan</a>
-        <a href="hapus.php?id_pesanan=<?= $id_pesanan ?>">Batalkan Pesanan</a>
+        <a href="delete.php?id_pesanan=<?= $id_pesanan ?>">Batalkan Pesanan</a>
 
       </div>
       <!-- pesan lagi -->

@@ -39,7 +39,7 @@ $id_pesanan = $_GET["id_pesanan"];
             <div class="isiberhasil d-flex justify-content-center align-items-center">
                 <!-- form -->
                 <form action="dashbord.php" class="berhasil" method="post">
-                    <h4 class="bold fw-bold">Pemesanan Berhasil Dihapus</h4>
+                    <h4 class="bold fw-bold">Pemesanan Berhasil Dibatalkan</h4>
                     <p class="pesan">Pengembalian dana sedang disproses. Cek email secara berkala!</p>
                     <button type="submit">kembali</button>
                 </form>

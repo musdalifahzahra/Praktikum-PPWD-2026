@@ -110,14 +110,13 @@ if (isset($_POST["pesan"])) {
             </div>
             <?php var_dump($pesanan["pembayaran"]); ?>
             <?php if ($error == true) { ?>
-                <span style="color: #ffff;">Maaf pemesanan gagal, silahkan pesan ulang</span>
+                <span style="color: #ffff;">Maaf perubahan pesanan gagal, silahkan pesan ulang</span>
             <?php } ?>
             <!-- pesan -->
             <div class="col-md-12">
-                <button type="submit" name="pesan">Pesan</button>
+                <button type="submit" name="pesan">Simpan Perubahan</button>
             </div>
-            <!-- muat ulang -->
-            <div class="col-md-12"><button type="reset">Muat Ulang</button></div>
+            
         </form>
 
 
