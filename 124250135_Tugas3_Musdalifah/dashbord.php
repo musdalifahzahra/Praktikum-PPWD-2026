@@ -53,7 +53,7 @@ if (!$_SESSION["registrasi"]) {
     <!-- php array list film -->
     <?php
     $query = "SELECT * FROM film";
-    $listfilm = read($query);
+    $listfilm = read_rows($query);
     ?>
 
     <section class="listfilm">

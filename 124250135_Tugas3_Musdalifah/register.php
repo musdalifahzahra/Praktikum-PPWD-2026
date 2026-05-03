@@ -13,7 +13,7 @@ $username_terpakai = false;
 
 // baca tabel users
 $read_users = "SELECT * FROM users";
-$users = read($read_users);
+$users = read_rows($read_users);
 
 // registrasi dengan Login
 if ($cara_registrasi == 2 && (isset($_POST["registrasi"]))) {

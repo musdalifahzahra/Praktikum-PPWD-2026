@@ -1,5 +1,23 @@
 <?php
 session_start();
+require "functions.php";
+$error = false;
+
+if (!$_SESSION["registrasi"]) {
+  header("location: register.php");
+  exit();
+}
+
+if (isset($_POST["pesan"])) {
+  if (insert_pesanan($_POST) > 0) {
+    $id_pesanan = read_row("SELECT * FROM pesanan ORDER BY id DESC LIMIT 1")["id"];
+    header("location: invoice.php?id_pesanan=$id_pesanan");
+    exit();
+  } else {
+    $error = true;
+  }
+}
+
 ?>
 
 <!doctype html>
@@ -24,14 +42,14 @@ session_start();
         <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
         <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
       </svg>
-      <span> <?php echo $_SESSION["email"]; ?> </span>
+      <span> <?php echo $_SESSION["username"]; ?> </span>
     </div>
   </nav>
 
   <div class="latar"></div>
   <div class="isi justify-content-center d-flex align-items-center">
     <!-- form -->
-    <form class="row g-3 p-5 m-2 justify-content-center d-flex align-items-center" action="T2-4-berhasil.php" method="post">
+    <form class="row g-3 p-5 m-2 justify-content-center d-flex align-items-center" action="" method="POST">
       <!-- judul -->
       <div class="col-md-12 pb-4">
         <p class="judul">FORM PEMESANAN</p>
@@ -50,11 +68,11 @@ session_start();
       <p class="labelfilmdipesan">Film Yang Ingin Dipesan</p>
       <select class="form-select" name="film" aria-label="Default select example" required>
         <option selected value="">Film Yang Ingin Dipesan</option>
-        <option value="Jumbo">Jumbo</option>
-        <option value="Goat">Goat</option>
-        <option value="Five Nights at Freddy's 2">Five Nights at Freddy's 2</option>
-        <option value="Sore">Sore</option>
-        <option value="Rangga & Cinta">Rangga & Cinta</option>
+        <?php $film = read_rows("SELECT * FROM film");
+        foreach ($film as $row):
+        ?>
+          <option value="<?= $row["id"] ?>"><?= $row["judul"] ?></option>
+        <?php endforeach; ?>
       </select>
 
       <!-- jumtiket -->
@@ -83,16 +101,18 @@ session_start();
           </div>
         </div>
       </div>
-
+      <?php if ($error == true) { ?>
+        <span style="color: #ffff;">Maaf pemesanan gagal, silahkan pesan ulang</span>
+      <?php } ?>
       <!-- pesan -->
       <div class="col-md-12">
-        <button type="submit">Pesan</button>
+        <button type="submit" name="pesan">Pesan</button>
       </div>
       <!-- muat ulang -->
       <div class="col-md-12"><button type="reset">Muat Ulang</button></div>
     </form>
 
-  
+
 
   </div>
 </body>
