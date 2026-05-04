@@ -1,5 +1,9 @@
 <?php
-$conn = mysqli_connect("localhost", "root", "", "pemesanan_tiket");
+$hostname = "localhost";
+$username = "root";
+$password = "";
+$database = "pemesanan_tiket";
+$conn = mysqli_connect($hostname, $username, $password, $database);
 
 // SELECT
 function read_rows($query)
