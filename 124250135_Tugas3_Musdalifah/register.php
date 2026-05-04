@@ -110,11 +110,11 @@ else if (isset($_POST["registrasi"])) {
 
           <?php if ($registrasi == 1) { ?>
             <button type="submit" name="registrasi">Sign Up</button><br>
-            <span style="text-align: center;">Have an Account? <a href="register.php?registrasi=2">Login</a></span>
+            <span style="display: flex; justify-content:center; margin-top:5px">Have an Account? <a href="register.php?registrasi=2"> Login</a></span>
 
           <?php } else { ?>
             <button type="submit" name="registrasi">Login</button><br>
-            <span style="text-align: center;">Haven't an Account? <a href="register.php?registrasi=1">Sign Up</a></span>
+            <span style="display: flex; justify-content:center; margin-top:5px">Haven't an Account? <a href="register.php?registrasi=1"> Sign Up</a></span>
           <?php } ?>
 
         </div>

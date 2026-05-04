@@ -167,3 +167,21 @@ button {
 .invoice .col-md-12 {
   padding: 0%;
 }
+.aksi {
+  display: flex;
+  gap: 8px;
+  justify-content: end;
+}
+.satu_aksi {
+  background-color: transparent;
+  border: 1px solid #c5050f;
+  max-width: fit-content;
+  padding: 7px 10px;
+  text-decoration: none;
+  color: #e4e4e4;
+  border-radius: 5px;
+  font-size: small;
+}
+.satu_aksi:hover{
+  background-color: #c5050f;
+}

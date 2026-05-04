@@ -83,7 +83,6 @@ button {
   border: 2px solid #e50914;
 }
 button:hover {
-  font-weight: bold;
   background-color: #b20710;
   border: 2px solid #b20710;
 }
@@ -92,7 +91,7 @@ input:hover {
 }
 
 /* Responsive HP */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 950px) {
   .isi {
     display: flex;
   }
