@@ -2,9 +2,9 @@
 session_start();
 require "functions.php";
 $_SESSION["registrasi"] = false;
-$cara_registrasi = 1;
-if (isset($_GET["login"])) {
-  $cara_registrasi = $_GET["login"];
+$registrasi = 1; // 1=signUp, 2=logIn
+if (isset($_GET["registrasi"])) {
+  $registrasi = $_GET["registrasi"];
 }
 
 $error = false;
@@ -16,12 +16,11 @@ $read_users = "SELECT * FROM users";
 $users = read_rows($read_users);
 
 // registrasi dengan Login
-if ($cara_registrasi == 2 && (isset($_POST["registrasi"]))) {
+if ($registrasi == 2 && (isset($_POST["registrasi"]))) {
   $username = $_POST["username"];
-  $email = $_POST["email"];
   $password = $_POST["password"];
   foreach ($users as $row):
-    if ($email == $row["email"] && $username == $row["username"]) {
+    if ($username == $row["username"] && $password == $row["password"]) {
       $_SESSION["registrasi"] = true;
       $_SESSION["username"] = $username;
       header("location: dashbord.php");
@@ -47,9 +46,7 @@ else if (isset($_POST["registrasi"])) {
 
   if (!$email_terpakai && !$username_terpakai) {
     if (insert_users($_POST) > 0) {
-      $_SESSION["registrasi"] = true;
-      $_SESSION["username"] = $username;
-      header("location: dashbord.php");
+      header("location: register.php?registrasi=2");
       exit();
     }
   }
@@ -81,13 +78,18 @@ else if (isset($_POST["registrasi"])) {
     <!-- kanan -->
     <div class="kanan">
       <form action="" method="POST">
-        <p class="login">Registrasi</p>
+        <?php if ($registrasi == 1) { ?>
+          <p class="login">Registrasi</p>
+        <?php } else { ?>
+          <p class="login">Login</p>
+        <?php } ?>
         <div class="inputemailpassword">
+
           <div class="username">
-            <label for="username">username</label><br />
-            <input type="username" id="username" name="username" />
+            <label for="username">Username</label><br />
+            <input type="username" id="username" name="username" required />
           </div>
-          <div class="email">
+          <div class="email" <?php if ($registrasi != 1) echo "hidden"; ?>>
             <label for="email">Email</label><br />
             <input type="email" id="email" name="email" placeholder="124250135@gmail.com" />
           </div>
@@ -106,13 +108,13 @@ else if (isset($_POST["registrasi"])) {
             <?php } ?>
           </div>
 
-          <?php if ($cara_registrasi == 1) { ?>
+          <?php if ($registrasi == 1) { ?>
             <button type="submit" name="registrasi">Sign Up</button><br>
-            <span style="text-align: center;">Have an Account? <a href="register.php?login=2">Login</a></span>
+            <span style="text-align: center;">Have an Account? <a href="register.php?registrasi=2">Login</a></span>
 
           <?php } else { ?>
             <button type="submit" name="registrasi">Login</button><br>
-            <span style="text-align: center;">Haven't an Account? <a href="register.php?login=1">Sign Up</a></span>
+            <span style="text-align: center;">Haven't an Account? <a href="register.php?registrasi=1">Sign Up</a></span>
           <?php } ?>
 
         </div>

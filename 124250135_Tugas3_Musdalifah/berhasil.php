@@ -1,6 +1,20 @@
 <?php
 session_start();
+if (!$_SESSION["registrasi"]) {
+    header("location: register.php");
+    exit();
+}
+// JANGAN LUPA PUBLIK REPO
+// JANGAN LUPA PUBLIK REPO
+// JANGAN LUPA PUBLIK REPO
+// JANGAN LUPA PUBLIK REPO
+// JANGAN LUPA PUBLIK REPO
+// JANGAN LUPA PUBLIK REPO
+// JANGAN LUPA PUBLIK REPO
+// JANGAN LUPA PUBLIK REPO
+// JANGAN LUPA PUBLIK REPO
 ?>
+
 
 <!doctype html>
 <html lang="en">

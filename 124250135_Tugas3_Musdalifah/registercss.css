@@ -51,7 +51,8 @@ form {
   text-align: center;
 }
 .email,
-.password {
+.password,
+.username {
   font-size: 14px;
   margin-top: 10px;
   margin-bottom: 10px;

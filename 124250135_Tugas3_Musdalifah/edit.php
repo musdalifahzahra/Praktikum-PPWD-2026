@@ -59,7 +59,7 @@ if (isset($_POST["pesan"])) {
                 <p class="judul">FORM EDIT PEMESANAN</p>
             </div>
             <!-- id pesanan -->
-             <input type="hidden" name="id_pesanan" value="<?= $pesanan["id"] ?>">
+            <input type="hidden" name="id_pesanan" value="<?= $pesanan["id"] ?>">
             <!-- nama -->
             <div class="col-md-6">
                 <label for="inputnama" class="form-label">Nama</label>
@@ -108,7 +108,6 @@ if (isset($_POST["pesan"])) {
                     </div>
                 </div>
             </div>
-            <?php var_dump($pesanan["pembayaran"]); ?>
             <?php if ($error == true) { ?>
                 <span style="color: #ffff;">Maaf perubahan pesanan gagal, silahkan pesan ulang</span>
             <?php } ?>
@@ -116,7 +115,7 @@ if (isset($_POST["pesan"])) {
             <div class="col-md-12">
                 <button type="submit" name="pesan">Simpan Perubahan</button>
             </div>
-            
+
         </form>
 
 
