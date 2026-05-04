@@ -1,16 +1,6 @@
 <?php
 $conn = mysqli_connect("localhost", "root", "", "pemesanan_tiket");
 
-// JANGAN LUPA PUBLIK REPO
-// JANGAN LUPA PUBLIK REPO
-// JANGAN LUPA PUBLIK REPO
-// JANGAN LUPA PUBLIK REPO
-// JANGAN LUPA PUBLIK REPO
-// JANGAN LUPA PUBLIK REPO
-// JANGAN LUPA PUBLIK REPO
-// JANGAN LUPA PUBLIK REPO
-// JANGAN LUPA PUBLIK REPO
-
 // SELECT
 function read_rows($query)
 {
