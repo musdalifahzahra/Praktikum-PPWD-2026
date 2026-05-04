@@ -13,5 +13,13 @@ nav {
 }
 nav span {
   margin-left: 2px !important;
-  font-size: 14px;
+  font-size: 16px;
+}
+
+.dropdown-item:hover,
+.dropdown-item:active {
+  color: black !important;
+  background-color: #eaeaea !important;
+  outline: none;
+  box-shadow: none;
 }
