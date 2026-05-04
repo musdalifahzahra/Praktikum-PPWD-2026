@@ -5,6 +5,10 @@ $password = "";
 $database = "pemesanan_tiket";
 $conn = mysqli_connect($hostname, $username, $password, $database);
 
+if (!$conn) {
+    die("Maaf koneksi gagal: " . mysqli_connect_error());
+}
+
 // SELECT
 function read_rows($query)
 {
