@@ -99,11 +99,11 @@ if (isset($_POST["pesan"])) {
                 <p>Metode Pembayaran</p>
                 <div class="pilihbayar">
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="pilihbayar" value="Cash" id="cash" <?= ((trim($pesanan["pembayaran"])) == "Cash") ? 'checked' : '' ?>required />
+                        <input class="form-check-input" type="radio" name="pilihbayar" value="Cash" id="cash" <?= ((trim($pesanan["pembayaran"])) == "Cash") ? 'checked' : '' ?> required />
                         <label class="form-check-label" for="cash"> Cash </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="pilihbayar" value="Qris" id="qris" <?= ((trim($pesanan["pembayaran"])) == "Qris") ? 'checked' : '' ?>required />
+                        <input class="form-check-input" type="radio" name="pilihbayar" value="Qris" id="qris" <?= ((trim($pesanan["pembayaran"])) == "Qris") ? 'checked' : '' ?> required />
                         <label class="form-check-label" for="qris"> Qris </label>
                     </div>
                 </div>
