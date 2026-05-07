@@ -91,7 +91,7 @@ else if (isset($_POST["registrasi"])) {
           </div>
           <div class="email" <?php if ($registrasi != 1) echo "hidden"; ?>>
             <label for="email">Email</label><br />
-            <input type="email" id="email" name="email" placeholder="124250135@gmail.com" />
+            <input type="email" id="email" name="email" placeholder="example@gmail.com" />
           </div>
           <div class="password">
             <label for="password">Password</label><br />
