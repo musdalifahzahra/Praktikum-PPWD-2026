@@ -109,7 +109,7 @@ if (isset($_POST["pesan"])) {
                 </div>
             </div>
             <?php if ($error == true) { ?>
-                <span style="color: #ffff;">Maaf perubahan pesanan gagal, silahkan pesan ulang</span>
+                <span style="color: #ffff;">Belum ada perubahan yang dilakukan</span>
             <?php } ?>
             <!-- pesan -->
             <div class="col-md-12">
