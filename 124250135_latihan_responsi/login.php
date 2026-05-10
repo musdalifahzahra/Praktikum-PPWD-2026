@@ -14,10 +14,10 @@ if (isset($_POST["login"])) {
             header("location: home.php");
             exit();
         } else {
-            $_SESSION["error_login"] = "Username atau Password salah";
+            $_SESSION["error_login"] = "Password tidak valid";
         }
     } else {
-        $_SESSION["error_login"] = "Username atau Password salah";
+        $_SESSION["error_login"] = "Username tidak ditemukan";
     }
 }
 ?>
