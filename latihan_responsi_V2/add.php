@@ -7,23 +7,11 @@ if (!isset($_SESSION["login"])) {
     exit();
 }
 
-
-
-if (isset($_GET["id_peminjaman"])) {
-    $id_peminjaman = $_GET["id_peminjaman"];
-    $read_pesanan = "SELECT * FROM peminjaman WHERE id_peminjaman = '$id_peminjaman'";
-    $peminjaman = read_row($read_pesanan);
-}
-
 if (isset($_POST["submit_pinjaman"])) {
-    if (update_peminjaman($_POST) > 0) {
+    if (create_peminjaman($_POST) > 0) {
         header("location: home.php");
         exit();
     }
-}
-if (isset($_POST["batal-ubah"])) {
-    header("location: home.php");
-    exit();
 }
 ?>
 
@@ -52,8 +40,6 @@ if (isset($_POST["batal-ubah"])) {
     <div class="wrap">
         <h5>Silahkan masukkan data</h5>
         <form action="" method="POST">
-            <!-- id peminjaman -->
-            <input type="hidden" name="id_peminjaman" value="<?= $peminjaman["id_peminjaman"] ?>">
             <!-- nama lab -->
             <label for="nama_lab">Nama Laboratorium</label><br>
             <select class="form-select" name="id_lab" aria-label="Default select example">
@@ -63,14 +49,14 @@ if (isset($_POST["batal-ubah"])) {
                 $lab = read_rows($query);
                 foreach ($lab as $row):
                 ?>
-                    <option value="<?= $row["id_laboratorium"] ?>" <?= ($row["id_laboratorium"] == $peminjaman["id_laboratorium"]) ? "selected" : "" ?>><?= "Laboratorium " . $row["nama"] ?></option>
+                    <option value="<?= $row["id_laboratorium"] ?>"><?= "Laboratorium " . $row["nama"] ?></option>
                 <?php endforeach; ?>
             </select>
 
             <!-- tanggal -->
             <div class="mb-3">
                 <label for="tanggal" class="form-label">Tanggal</label>
-                <input type="date" class="form-control" name="tanggal" value="<?= $peminjaman["tanggal"] ?>">
+                <input type="date" class="form-control" name="tanggal">
             </div>
 
             <!-- jam -->
@@ -82,8 +68,7 @@ if (isset($_POST["batal-ubah"])) {
             foreach ($jam as $row):
             ?>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" value="<?= $row["id_jam"] ?>" name="jam" id="jam<?= $i ?>"
-                        <?= ($row["id_jam"] == $peminjaman["id_jam"]) ? "checked" : "" ?>>
+                    <input class="form-check-input" type="radio" value="<?= $row["id_jam"] ?>" name="jam" id="jam<?= $i ?>">
                     <label class="form-check-label" for="jam<?= $i ?>">
                         <?= $row["jam"] ?>
                     </label>
@@ -94,8 +79,8 @@ if (isset($_POST["batal-ubah"])) {
 
             <!-- aksi -->
             <div class="aksi">
-                <button type="submit" name="submit_pinjaman">Ubah Pinjaman</button>
-                <button type="submit" name="batal-ubah">Batalkan</button>
+                <button type="reset">Batalkan Pinjaman</button>
+                <button type="submit" name="submit_pinjaman">Ajukan Pinjaman</button>
             </div>
         </form>
     </div>

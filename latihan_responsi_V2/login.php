@@ -1,16 +1,12 @@
 <?php
-// TAMBAHANNNN
-// cek kesamaan username
-
 session_start();
 require "functions.php";
 
-if (isset($_POST["registrasi"])) {
-    $email = $_POST["email"];
+if (isset($_POST["login"])) {
     $username = $_POST["username"];
     $password = $_POST["password"];
 
-    $query = "SELECT * FORM users WHERE username = $username";
+    $query = "SELECT * FROM users WHERE username = '$username'";
     if (read_row($query) > 0) {
         if ($password == read_row($query)["password"]) {
             $_SESSION["login"] = true;
@@ -19,10 +15,12 @@ if (isset($_POST["registrasi"])) {
         } else {
             $_SESSION["error-login"] = "Password tidak valid";
             header("location: login.php");
+            exit();
         }
     } else {
         $_SESSION["error-login"] = "Username tidak ditemukan";
         header("location: login.php");
+        exit();
     }
 }
 
@@ -38,20 +36,20 @@ if (isset($_POST["registrasi"])) {
 </head>
 
 <body>
-    <h1>REGISTER</h1>
-    <h2>Mulai ajukan peminjaman lab</h2>
+    <h1>LOGIN</h1>
+    <h2>Selamat Datang Kembali</h2>
     <div class="form">
         <form action="" method="POST">
             <label for="username">Username</label><br>
-            <input type="text" name="username"><br>
+            <input type="text" name="username" required><br>
             <label for="password">Password</label><br>
-            <input type="password" name="password"><br>
-            <button name="registrasi">Buat Akun</button><br>
-            <?php if (isset($_SESSION["error_registrasi"])) { ?>
-                <span><?= $_SESSION["error_registrasi"] ?></span>
+            <input type="password" name="password" required><br>
+            <button name="login">Masuk</button><br>
+            <?php if (isset($_SESSION["error-login"])) { ?>
+                <span><?= $_SESSION["error-login"] ?></span><br>
             <?php }
-            unset($_SESSION["error_registrasi"]); ?>
-            <span>Belum punya akun? <a href="Registrasi.php"> Registrasi</a></span>
+            unset($_SESSION["error-login"]); ?>
+            <span>Belum punya akun? <a href="Register.php"> Registrasi</a></span>
         </form>
     </div>
 </body>
