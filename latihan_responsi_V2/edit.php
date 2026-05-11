@@ -7,8 +7,6 @@ if (!isset($_SESSION["login"])) {
     exit();
 }
 
-
-
 if (isset($_GET["id_peminjaman"])) {
     $id_peminjaman = $_GET["id_peminjaman"];
     $read_pesanan = "SELECT * FROM peminjaman WHERE id_peminjaman = '$id_peminjaman'";
@@ -21,6 +19,7 @@ if (isset($_POST["submit_pinjaman"])) {
         exit();
     }
 }
+
 if (isset($_POST["batal-ubah"])) {
     header("location: home.php");
     exit();
@@ -35,6 +34,8 @@ if (isset($_POST["batal-ubah"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
@@ -43,61 +44,69 @@ if (isset($_POST["batal-ubah"])) {
         <div class="kanan">
             <ul>
                 <li><a href="home.php">Home</a></li>
-                <li><a href="history.php">Riwatat</a></li>
+                <li><a href="history.php">Riwayat</a></li>
                 <li><a href="logout.php">Logout</a></li>
             </ul>
         </div>
     </nav>
 
-    <div class="wrap">
-        <h5>Silahkan masukkan data</h5>
-        <form action="" method="POST">
-            <!-- id peminjaman -->
-            <input type="hidden" name="id_peminjaman" value="<?= $peminjaman["id_peminjaman"] ?>">
-            <!-- nama lab -->
-            <label for="nama_lab">Nama Laboratorium</label><br>
-            <select class="form-select" name="id_lab" aria-label="Default select example">
-                <option selected>Nama Laboratorium</option>
-                <?php
-                $query = "SELECT * FROM laboratorium";
-                $lab = read_rows($query);
-                foreach ($lab as $row):
-                ?>
-                    <option value="<?= $row["id_laboratorium"] ?>" <?= ($row["id_laboratorium"] == $peminjaman["id_laboratorium"]) ? "selected" : "" ?>><?= "Laboratorium " . $row["nama"] ?></option>
-                <?php endforeach; ?>
-            </select>
-
-            <!-- tanggal -->
-            <div class="mb-3">
-                <label for="tanggal" class="form-label">Tanggal</label>
-                <input type="date" class="form-control" name="tanggal" value="<?= $peminjaman["tanggal"] ?>">
-            </div>
-
-            <!-- jam -->
-            <label for="">Jam Mulai</label>
-            <?php
-            $query_jam = "SELECT * FROM jam";
-            $jam = read_rows($query_jam);
-            $i = 1;
-            foreach ($jam as $row):
-            ?>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" value="<?= $row["id_jam"] ?>" name="jam" id="jam<?= $i ?>"
-                        <?= ($row["id_jam"] == $peminjaman["id_jam"]) ? "checked" : "" ?>>
-                    <label class="form-check-label" for="jam<?= $i ?>">
-                        <?= $row["jam"] ?>
-                    </label>
+    <div class="wrap-smua">
+        <div class="wrap-form">
+            <h5 style="text-align: center;">Silahkan masukkan data</h5><br>
+            <form action="" method="POST">
+                <!-- id peminjaman -->
+                <input type="hidden" name="id_peminjaman" value="<?= $peminjaman["id_peminjaman"] ?>">
+                <!-- nama lab -->
+                <div>
+                    <label for="nama_lab">Nama Laboratorium</label><br>
+                    <select class="form-select" name="id_lab" aria-label="Default select example">
+                        <option selected>Nama Laboratorium</option>
+                        <?php
+                        $query = "SELECT * FROM laboratorium";
+                        $lab = read_rows($query);
+                        foreach ($lab as $row):
+                        ?>
+                            <option value="<?= $row["id_laboratorium"] ?>" <?= ($row["id_laboratorium"] == $peminjaman["id_laboratorium"]) ? "selected" : "" ?>><?= "Laboratorium " . $row["nama"] ?></option>
+                        <?php endforeach; ?>
+                    </select>
                 </div>
-            <?php
-                $i++;
-            endforeach; ?>
+                <!-- tanggal -->
+                <div class="mb-3">
+                    <label for="tanggal" class="form-label">Tanggal</label>
+                    <input type="date" class="form-control" name="tanggal" value="<?= $peminjaman["tanggal"] ?>">
+                </div>
 
-            <!-- aksi -->
-            <div class="aksi">
-                <button type="submit" name="submit_pinjaman">Ubah Pinjaman</button>
-                <button type="submit" name="batal-ubah">Batalkan</button>
-            </div>
-        </form>
+                <!-- jam -->
+                <div>
+                    <label for="">Jam Mulai</label>
+
+                    <div class="jam">
+                        <?php
+                        $query_jam = "SELECT * FROM jam";
+                        $jam = read_rows($query_jam);
+                        $i = 1;
+                        foreach ($jam as $row):
+                        ?>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" value="<?= $row["id_jam"] ?>" name="jam" id="jam<?= $i ?>"
+                                    <?= ($row["id_jam"] == $peminjaman["id_jam"]) ? "checked" : "" ?>>
+                                <label class="form-check-label" for="jam<?= $i ?>">
+                                    <?= $row["jam"] ?>
+                                </label>
+                            </div>
+                        <?php
+                            $i++;
+                        endforeach; ?>
+                    </div>
+                </div>
+
+                <!-- aksi -->
+                <div class="aksi">
+                    <button type="submit" name="submit_pinjaman">Ubah Pinjaman</button>
+                    <button type="submit" name="batal-ubah">Batalkan</button>
+                </div>
+            </form>
+        </div>
     </div>
 </body>
 
