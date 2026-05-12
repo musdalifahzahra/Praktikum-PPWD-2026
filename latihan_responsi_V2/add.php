@@ -7,13 +7,25 @@ if (!isset($_SESSION["login"])) {
     exit();
 }
 
+// if (isset($_POST["submit_pinjaman"])) {
+//     if (create_peminjaman($_POST) > 1) {
+//         header("location: home.php");
+//         exit();
+//     }
+// }
+
 if (isset($_POST["submit_pinjaman"])) {
-    if (create_peminjaman($_POST) > 1) {
+    $cek_tersedia = update_peminjaman_ketersediaan($_POST);
+    if ($cek_tersedia != '1') {
+        $_SESSION["error_ubah"] = "Waktu yang dipilih sudah tidak tersedia";
+        header("location: add.php");
+        exit();
+    }
+    if (create_peminjaman($_POST) > 0) {
         header("location: home.php");
         exit();
     }
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -79,7 +91,17 @@ if (isset($_POST["submit_pinjaman"])) {
                 <?php
                     $i++;
                 endforeach; ?>
-
+                <!-- nampilin erro -->
+                <?php
+                if (isset($_SESSION["error_ubah"])) {
+                ?>
+                    <span>
+                        <?= $_SESSION["error_ubah"] ?>
+                    </span>
+                <?php
+                }
+                unset($_SESSION["error_ubah"]);
+                ?>
                 <!-- aksi -->
                 <div class="aksi">
                     <a href="home.php">Batalkan pesanan</a>

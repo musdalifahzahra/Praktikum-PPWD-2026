@@ -56,7 +56,7 @@ ul a {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  max-width: 800px;
+  width: 800px;
   /* padding: 0px 200px; */
   margin-top: 90px;
   /* gap: 20px; */
@@ -85,8 +85,7 @@ ul a {
 .masuk label {
   font-size: small;
 }
-
-.masuk .sapa {
+wrap-card .masuk .sapa {
   font-size: medium;
   margin-bottom: 25px;
 }
@@ -121,8 +120,8 @@ section,
   background-color: var(--color-5);
   padding: 35px;
 }
-.wrap-riwayat{
-    width: 800px;
+.wrap-riwayat {
+  width: 800px;
 }
 
 .wrap-riwayat table {
@@ -130,13 +129,13 @@ section,
   width: 100%;
 }
 .wrap-riwayat table td,
-.wrap-riwayat table th{
+.wrap-riwayat table th {
   padding: 2px 20px;
 }
-.wrap-form form{
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+.wrap-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 .search-bar {
   display: grid;
@@ -184,27 +183,27 @@ section,
 }
 
 .wrap-form .form-control,
-.wrap-form .form-select{
-    width: 500px;
+.wrap-form .form-select {
+  width: 500px;
 }
-.jam{
-    display: flex;
-}
-
-.wrap-form .aksi{
-margin-top: 5px;
-border-radius: 8px;
-border: 0px;
+.jam {
+  display: flex;
 }
 
-.satu-jam{
-    background-color: #608bc1;
-    padding: 3px 7px;
-    border-radius: 5px;
-    font-size: small;
+.wrap-form .aksi {
+  margin-top: 5px;
+  border-radius: 8px;
+  border: 0px;
 }
-.wrap-jam{
-    display: flex;
-    gap: 4px;
+
+.satu-jam {
+  background-color: #608bc1;
+  padding: 3px 7px;
+  border-radius: 5px;
+  font-size: small;
+}
+.wrap-jam {
+  display: flex;
+  gap: 4px;
 }
 /* home */

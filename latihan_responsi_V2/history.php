@@ -37,8 +37,8 @@ if (!isset($_SESSION["login"])) {
         <div class="wrap-riwayat">
             <h5>Cek riwayat peminjamanmu disini</h5>
             <?php
-            $query = "SELECT * FROM peminjaman";
-            $peminjaman = read_rows($query);
+            $query = "SELECT * FROM riwayat";
+            $riwayat = read_rows($query);
             ?>
             <table>
                 <tr>
@@ -46,9 +46,9 @@ if (!isset($_SESSION["login"])) {
                     <th>Laboratorium</th>
                     <th  style="text-align: right;">Timestamp</th>
                 </tr>
-                <?php foreach ($peminjaman as $row): ?>
+                <?php foreach ($riwayat as $row): ?>
                     <tr>
-                        <td style="text-align: center;"><?= $row["id_peminjaman"] ?></td>
+                        <td style="text-align: center;"><?= $row["id_riwayat"] ?></td>
                         <?php
                         $id_lab = $row["id_laboratorium"];
                         $nama_lab = "SELECT  * FROM laboratorium WHERE id_laboratorium = '$id_lab'";

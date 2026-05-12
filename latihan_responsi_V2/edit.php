@@ -13,12 +13,30 @@ if (isset($_GET["id_peminjaman"])) {
     $peminjaman = read_row($read_pesanan);
 }
 
-if (isset($_POST["submit_pinjaman"])) {
-    if (update_peminjaman($_POST) > 0) {
+// ketika mengubah lab atau waktu 
+// GANTI KONDISI ISSET IF
+if (isset($_POST["jam"]) || ($_POST["submit_pinjaman"])) {
+    if (update_peminjaman_ketersediaan($_POST) != '1') {
+        $_SESSION["error_ubah"] = "Waktu yang dipilih sudah tidak tersedia";
         header("location: home.php");
         exit();
     }
+    // KALO SEMISAL LAB NYA TERSEDIA BISA LANJUTIN PERUBAHAN
+    else if (update_peminjaman_ketersediaan($_POST) == '1') {
+        if (update_peminjaman($_POST) > 0) {
+            header("location: home.php");
+            exit();
+        }
+    }
 }
+
+// } else if (isset($_POST["submit_pinjaman"])) {
+//     if (update_peminjaman($_POST) > 0) {
+//         header("location: home.php");
+//         exit();
+//     }
+// }
+
 
 if (isset($_POST["batal-ubah"])) {
     header("location: home.php");

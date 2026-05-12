@@ -7,6 +7,16 @@ if (!isset($_SESSION["login"])) {
     exit();
 }
 
+if (isset($_GET["cari"])) {
+    if (!empty($_GET["lab_cari"]) || !empty($_GET["jam_cari"])) {
+        $data_tersedia = read_tersedia($_GET);
+    } else {
+        $data_tersedia = read_tersedia(0);
+    }
+} else {
+    $data_tersedia = read_tersedia(0);
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,31 +43,32 @@ if (!isset($_SESSION["login"])) {
     <div class="wrap-smua">
         <section>
             <div class="search-bar">
-                <div class="">
-                    <input type="text" class="form-control" name="lab_cari" placeholder="Cari laboratorium">
-                </div>
-                <select class=" form-select" aria-label="Default select example" name="jam_cari">
-                    <option selected>Jam</option>
-                    <?php
-                    $read_jam = "SELECT * FROM jam";
-                    $jam = read_rows($read_jam);
-                    foreach ($jam as $row):
-                    ?>
-                        <option value="<?= $row["id_jam"] ?>"><?= $row["jam"] ?></option>
-                    <?php
-                    endforeach;
-                    ?>
-                </select>
+                <form action="" method="GET">
+                    <div class="">
+                        <input type="text" class="form-control" name="lab_cari" placeholder="Cari laboratorium" value="">
+                    </div>
+                    <select class=" form-select" aria-label="Default select example" name="jam_cari">
+                        <option value="">Jam</option>
+                        <?php
+                        $read_jam = "SELECT * FROM jam";
+                        $jam = read_rows($read_jam);
+                        foreach ($jam as $row):
+                        ?>
+                            <option value="<?= $row["id_jam"] ?>"><?= $row["jam"] ?></option>
+                        <?php
+                        endforeach;
+                        ?>
+                    </select>
 
-                <button name="cari">Cari</button>
-
+                    <button name="cari">Cari</button>
+                </form>
             </div>
             <br>
 
             <!-- LABORATORIUM YG TERSEDIA  -->
-            <!-- cari data lab yg tersedia -->
+            <!-- cari data lab yg tersedia  -->
             <?php
-            $data_tersedia = read_tersedia();
+            // $data_tersedia = read_tersedia();
             ?>
             <h5>Laboratorium yang tersedia hari ini</h5>
             <div class="wrap-card">
@@ -75,7 +86,7 @@ if (!isset($_SESSION["login"])) {
         </section>
 
         <section>
-            <h5>Ajuan pinjaman sata ini</h5>
+            <h5>Ajuan pinjaman saat ini</h5>
             <div class="wrap-card">
                 <?php
                 $read_peminjaman = "SELECT * FROM peminjaman ORDER BY id_peminjaman DESC LIMIT 5";
