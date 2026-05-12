@@ -58,7 +58,7 @@ if (isset($_POST["registrasi"])) {
 <body>
     <div class="wrap-masuk">
         <div class="masuk">
-            <h3>REGISTER</h3>
+            <h2>REGISTER</h2>
             <p class="sapa">Mulai ajukan peminjaman lab</p>
             <form action="" method="POST">
                 <div class="mb-3">

@@ -15,7 +15,7 @@ if (!isset($_SESSION["login"])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>History</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
 
     <link rel="stylesheet" href="style.css">
@@ -23,7 +23,7 @@ if (!isset($_SESSION["login"])) {
 
 <body>
     <nav>
-        <span class="kiri">Profile</span>
+        <span class="kiri"><?= $_SESSION["username"] ?></span>
         <div class="kanan">
             <ul>
                 <li><a href="home.php">Home</a></li>
@@ -35,32 +35,30 @@ if (!isset($_SESSION["login"])) {
 
     <div class="wrap-smua">
         <div class="wrap-riwayat">
-            <h5>Cek riwayat peminjamanmu disini</h5>
+            <h5 style="text-align: center;">Cek riwayat peminjamanmu disini</h5>
             <?php
             $query = "SELECT * FROM riwayat";
             $riwayat = read_rows($query);
             ?>
-            <table>
-                <tr>
-                    <th  style="text-align: center; width:10px">ID</th>
-                    <th>Laboratorium</th>
-                    <th  style="text-align: right;">Timestamp</th>
-                </tr>
-                <?php foreach ($riwayat as $row): ?>
-                    <tr>
-                        <td style="text-align: center;"><?= $row["id_riwayat"] ?></td>
-                        <?php
-                        $id_lab = $row["id_laboratorium"];
-                        $nama_lab = "SELECT  * FROM laboratorium WHERE id_laboratorium = '$id_lab'";
-                        ?>
-                        <td><?= "Laboratorium " . read_row($nama_lab)["nama"]; ?></td>
-                        <?php $id_jam = $row["id_jam"];
-                        $nama_jam = "SELECT * FROM jam WHERE id_jam = '$id_jam'";
-                        ?>
-                        <td style="text-align: right;"><?= $row["tanggal"] . " " .  read_row($nama_jam)["jam"] ?></td>
-                    </tr>
-                <?php endforeach; ?>
-            </table>
+            <div class="satu-riwayat th">
+                <span>ID</span>
+                <span>Laboratorium</span>
+                <span style="text-align: right;">Timestamp</span>
+            </div>
+            <?php foreach ($riwayat as $row): ?>
+                <div class="satu-riwayat">
+                    <span><?= $row["id_riwayat"] ?></span>
+                    <?php
+                    $id_lab = $row["id_laboratorium"];
+                    $nama_lab = "SELECT  * FROM laboratorium WHERE id_laboratorium = '$id_lab'";
+                    ?>
+                    <span><?= "Laboratorium " . read_row($nama_lab)["nama"]; ?></span>
+                    <?php $id_jam = $row["id_jam"];
+                    $nama_jam = "SELECT * FROM jam WHERE id_jam = '$id_jam'";
+                    ?>
+                    <span style="text-align: right;"><?= $row["tanggal"] . " " .  read_row($nama_jam)["jam"] ?></span>
+                </div>
+            <?php endforeach; ?>
         </div>
     </div>
 </body>

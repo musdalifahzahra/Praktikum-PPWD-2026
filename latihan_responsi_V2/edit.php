@@ -30,14 +30,6 @@ if (isset($_POST["jam"]) || ($_POST["submit_pinjaman"])) {
     }
 }
 
-// } else if (isset($_POST["submit_pinjaman"])) {
-//     if (update_peminjaman($_POST) > 0) {
-//         header("location: home.php");
-//         exit();
-//     }
-// }
-
-
 if (isset($_POST["batal-ubah"])) {
     header("location: home.php");
     exit();
@@ -50,15 +42,14 @@ if (isset($_POST["batal-ubah"])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Add</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
     <nav>
-        <span class="kiri">Profile</span>
+        <span class="kiri"><?= $_SESSION["username"] ?></span>
         <div class="kanan">
             <ul>
                 <li><a href="home.php">Home</a></li>
@@ -68,12 +59,13 @@ if (isset($_POST["batal-ubah"])) {
         </div>
     </nav>
 
-    <div class="wrap-smua">
+    <div class="wrap-smua form" style="margin-top: 40px;">
         <div class="wrap-form">
-            <h5 style="text-align: center;">Silahkan masukkan data</h5><br>
+            <h5 style="text-align: center; margin-bottom: 0px">Silahkan masukkan data</h5><br>
             <form action="" method="POST">
                 <!-- id peminjaman -->
                 <input type="hidden" name="id_peminjaman" value="<?= $peminjaman["id_peminjaman"] ?>">
+
                 <!-- nama lab -->
                 <div>
                     <label for="nama_lab">Nama Laboratorium</label><br>
@@ -89,7 +81,7 @@ if (isset($_POST["batal-ubah"])) {
                     </select>
                 </div>
                 <!-- tanggal -->
-                <div class="mb-3">
+                <div class="">
                     <label for="tanggal" class="form-label">Tanggal</label>
                     <input type="date" class="form-control" name="tanggal" value="<?= $peminjaman["tanggal"] ?>">
                 </div>
@@ -97,7 +89,6 @@ if (isset($_POST["batal-ubah"])) {
                 <!-- jam -->
                 <div>
                     <label for="">Jam Mulai</label>
-
                     <div class="jam">
                         <?php
                         $query_jam = "SELECT * FROM jam";
@@ -117,11 +108,21 @@ if (isset($_POST["batal-ubah"])) {
                         endforeach; ?>
                     </div>
                 </div>
-
+                <!-- nampilin erro -->
+                <?php
+                if (isset($_SESSION["error_ubah"])) {
+                ?>
+                    <span>
+                        <?= $_SESSION["error_ubah"] ?>
+                    </span>
+                <?php
+                }
+                unset($_SESSION["error_ubah"]);
+                ?>
                 <!-- aksi -->
                 <div class="aksi">
-                    <button type="submit" name="submit_pinjaman">Ubah Pinjaman</button>
-                    <button type="submit" name="batal-ubah">Batalkan</button>
+                    <a href="home.php" class="tombol trans">Batalkan</a>
+                    <button type="submit" name="submit_pinjaman" class="tombol">Ubah Pinjaman</button>
                 </div>
             </form>
         </div>
