@@ -145,8 +145,6 @@ section,
 .satu-riwayat.th {
   background-color: var(--color-jam);
   color: var(--color-5);
-  display: none;
-  font-weight: bold;
 }
 .wrap-form form {
   display: flex;
@@ -215,7 +213,7 @@ section,
 }
 .tombol a {
   text-decoration: none;
-  background-color: #0f6e56;
+  background-color: var(--color-jam);
 }
 .tombol.trans {
   background-color: transparent !important;
