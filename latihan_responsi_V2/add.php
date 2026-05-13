@@ -7,13 +7,6 @@ if (!isset($_SESSION["login"])) {
     exit();
 }
 
-// if (isset($_POST["submit_pinjaman"])) {
-//     if (create_peminjaman($_POST) > 1) {
-//         header("location: home.php");
-//         exit();
-//     }
-// }
-
 if (isset($_POST["submit_pinjaman"])) {
     $cek_tersedia = update_peminjaman_ketersediaan($_POST);
     if ($cek_tersedia != '1') {
@@ -99,7 +92,7 @@ if (isset($_POST["submit_pinjaman"])) {
                         endforeach; ?>
                     </div>
                 </div>
-                <!-- nampilin erro -->
+                
                 <?php
                 if (isset($_SESSION["error_ubah"])) {
                 ?>

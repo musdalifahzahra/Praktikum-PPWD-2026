@@ -1,7 +1,4 @@
 <?php
-// TAMBAHANNNN
-// cek kesamaan username
-
 session_start();
 require "functions.php";
 
@@ -40,8 +37,6 @@ if (isset($_POST["registrasi"])) {
         }
     }
 }
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">

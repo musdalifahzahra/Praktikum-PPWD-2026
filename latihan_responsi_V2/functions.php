@@ -54,15 +54,12 @@ function read_tersedia($filter)
             WHERE 
             tersedia.id_lab = '$id_lab_tampil' AND
             tersedia.status = '1' 
-            -- AND
-            -- jam.id_jam = '$jam_cari'
             ORDER BY tersedia.id_lab, tersedia.id_jam";
         } else if (!empty($jam_cari)) {
             $query = "SELECT tersedia.id_lab, jam.jam
             FROM tersedia
             JOIN jam ON tersedia.id_jam = jam.id_jam
             WHERE 
-            -- tersedia.id_lab = '$id_lab_tampil' AND
             tersedia.status = '1' 
             AND
             jam.id_jam = '$jam_cari'
@@ -78,7 +75,6 @@ function read_tersedia($filter)
         $nama_lab = read_row("SELECT * FROM laboratorium WHERE id_laboratorium = '$id_lab'");
         $data_tersedia[$nama_lab["nama"]][] = $row["jam"];
     }
-
     return $data_tersedia;
 }
 
@@ -89,7 +85,6 @@ function create_user($data)
     $email = $data["email"];
     $username = $data["username"];
     $password = $data["password"];
-
     $query = "INSERT INTO users 
               VALUES ('', '$email', '$username', '$password')";
     mysqli_query($conn, $query);
@@ -101,20 +96,15 @@ function create_peminjaman($data)
     $id_lab = $data["id_lab"];
     $tanggal = $data["tanggal"];
     $id_jam = $data["jam"];
+    $id_user = $_SESSION["id_user"];
 
     // input peminjaman ke tabel peminjaman
     $query = "INSERT INTO peminjaman
-              VALUES ('', '$id_lab', '$tanggal', '$id_jam')";
+              VALUES ('', '$id_lab', '$tanggal', '$id_jam', '$id_user')";
     mysqli_query($conn, $query);
     $insert_peminjaman = mysqli_affected_rows($conn);
 
-    // input tabel riwayat
-    // $query = "INSERT INTO riwayat
-    //           VALUES ('', '$id_lab', '$tanggal', '$id_jam')";
-    // mysqli_query($conn, $query);
-    // $insert_riwayat = mysqli_affected_rows($conn);
-
-    // updayte tabel tersedia
+    // update tabel tersedia
     $query = "UPDATE tersedia SET
               status = '0'
               WHERE id_lab = '$id_lab' AND id_jam = '$id_jam'";
@@ -132,7 +122,7 @@ function update_peminjaman_ketersediaan($data)
     $id_lab = $data["id_lab"];
     $id_jam = $data["jam"];
 
-    // cek data lab yg mw dipinjam tersedia enggak
+    // cek data lab yg mw dipinjam tersedia tidak
     $read_tersedia = "SELECT * FROM tersedia 
                       WHERE id_lab = '$id_lab' AND id_jam ='$id_jam'";
     $tersedia = read_row($read_tersedia);
@@ -178,42 +168,11 @@ function update_peminjaman($data)
               WHERE id_peminjaman = '$id_peminjaman'";
 
     mysqli_query($conn, $query);
-
-    // 2. update data riwayat
-    $query = "UPDATE riwayat SET
-              id_laboratorium= '$lab_sesudah',
-              tanggal= '$tanggal',
-              id_jam= '$jam_sesudah'
-
-              WHERE id_riwayat = '$id_peminjaman'";
-
-    mysqli_query($conn, $query);
-
-    // return mysqli_affected_rows($conn);
 }
-
-
-// function update_tersedia($data)
-// {
-//     global $conn;
-//     $id_peminjaman = $data["id_peminjaman"];
-//     $id_lab = $data["id_lab"];
-//     $tanggal = $data["tanggal"];
-//     $id_jam = $data["jam"];
-
-//     $query = "UPDATE tersedia SET
-//               status = '0'
-//               WHERE id_lab = '$id_lab' AND id_jam = '$id_jam'";
-
-//     mysqli_query($conn, $query);
-
-//     return mysqli_affected_rows($conn);
-// }
 
 function delete($id_peminjaman)
 {
     global $conn;
-    // update tersedia
     // baca data peminjamanan
     $read_peminjaman = "SELECT * FROM peminjaman WHERE id_peminjaman = $id_peminjaman";
     $peminjaman = read_row($read_peminjaman);
@@ -221,6 +180,7 @@ function delete($id_peminjaman)
     $id_lab_pinjam = $peminjaman["id_laboratorium"];
     $id_jam_pinjam = $peminjaman["id_jam"];
 
+    // update tersedia
     $query = "UPDATE tersedia SET
               status = '1'
               WHERE id_lab = '$id_lab_pinjam' AND id_jam = '$id_jam_pinjam' ";

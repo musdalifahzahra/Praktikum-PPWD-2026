@@ -1,18 +1,15 @@
-/* TEMPLATE */
 :root {
   --color-3: #608bc1;
   --color-bag-web: #f1f5f9;
   --color-5: #ffffff;
   --color-card: #e6f1fb;
   --color-tombol: #185fa5;
-  /* fiks */
   --color-nav: #042c53;
   --color-jam: #0f6e56;
   --color-card: #f0f4f8;
   --color-judul: #185fa5;
   --color-judul: #185fa5;
 }
-
 * {
   box-sizing: border-box;
 }
@@ -44,9 +41,9 @@ ul a {
   text-decoration: none;
   color: var(--color-5);
   margin-left: 5px;
+  margin-right: 10px;
+  font-size: 14px;
 }
-
-/* masuk */
 .wrap-masuk {
   display: flex;
   flex-direction: column;
@@ -97,10 +94,9 @@ wrap-card .masuk .sapa {
   border: 1px solid var(--color-5);
   color: var(--color-5);
 }
-h2{
+h2 {
   font-weight: bold;
 }
-/* SMUA  HALAMAN */
 .wrap-smua {
   width: min(800px, 100%);
   margin: 90px auto 30px auto;
@@ -133,20 +129,24 @@ section,
 .wrap-form {
   padding: 35px;
 }
-
 .wrap-riwayat {
   width: 800px;
 }
-
 .satu-riwayat {
-  padding: 10px 20px;
+  padding: 10px 15px;
   display: grid;
-  grid-template-columns: 1fr 7fr 2fr;
+  margin-bottom: 10px;
+  gap: 10px;
+  align-items: center;
+
+  grid-template-columns: 60px 1fr 180px;
   border-bottom: 1px solid #94a3b8;
 }
 .satu-riwayat.th {
   background-color: var(--color-jam);
   color: var(--color-5);
+  display: none;
+  font-weight: bold;
 }
 .wrap-form form {
   display: flex;
@@ -203,7 +203,6 @@ section,
   border-radius: 8px;
   border: 0px;
 }
-
 .tombol {
   background-color: var(--color-nav) !important;
   border: 1px solid var(--color-nav);
@@ -222,7 +221,6 @@ section,
   background-color: transparent !important;
   color: var(--color-nav);
 }
-
 .satu-jam {
   background-color: var(--color-jam);
   padding: 3px 7px;
@@ -235,7 +233,54 @@ section,
   display: flex;
   gap: 4px;
 }
-a svg{
+a svg {
   color: var(--color-nav);
   margin: 10px 20px 0px 0px;
+}
+.wrap-riwayat {
+  width: 100%;
+  overflow-x: auto;
+}
+
+@media (max-width: 768px) {
+  .wrap-smua {
+    width: calc(100% - 20px);
+    margin: 80px auto 20px auto;
+  }
+  .wrap-riwayat,
+  section,
+  .search-bar,
+  .wrap-form {
+    padding: 20px;
+  }
+  .satu-riwayat {
+    grid-template-columns: 50px 1fr 140px;
+    font-size: 14px;
+  }
+  nav {
+    padding: 15px 20px;
+  }
+}
+
+@media (max-width: 576px) {
+  .satu-riwayat,
+  .satu-riwayat.th {
+    grid-template-columns: 1fr;
+    gap: 4px;
+    text-align: left !important;
+  }
+  .satu-riwayat span:last-child {
+    text-align: left !important;
+    font-size: 13px;
+    color: #64748b;
+  }
+  .satu-riwayat.th {
+    display: none;
+  }
+  .satu-riwayat {
+    background: #fff;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #e2e8f0;
+  }
 }

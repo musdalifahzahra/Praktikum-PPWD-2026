@@ -13,8 +13,6 @@ if (isset($_GET["id_peminjaman"])) {
     $peminjaman = read_row($read_pesanan);
 }
 
-// ketika mengubah lab atau waktu 
-// GANTI KONDISI ISSET IF
 if (isset($_POST["jam"]) || ($_POST["submit_pinjaman"])) {
     if (update_peminjaman_ketersediaan($_POST) == '1') {
         update_peminjaman($_POST);
@@ -25,8 +23,6 @@ if (isset($_POST["jam"]) || ($_POST["submit_pinjaman"])) {
         header("location: edit.php?id_peminjaman=" . $_POST["id_peminjaman"]);
         exit();
     }
-    // KALO SEMISAL LAB NYA TERSEDIA BISA LANJUTIN PERUBAHAN
-
 }
 
 if (isset($_POST["batal-ubah"])) {
@@ -107,7 +103,7 @@ if (isset($_POST["batal-ubah"])) {
                         endforeach; ?>
                     </div>
                 </div>
-                <!-- nampilin erro -->
+
                 <?php
                 if (isset($_SESSION["error_ubah"])) {
                 ?>

@@ -63,11 +63,6 @@ if (isset($_GET["cari"])) {
             </div>
             <br>
 
-            <!-- LABORATORIUM YG TERSEDIA  -->
-            <!-- cari data lab yg tersedia  -->
-            <?php
-            // $data_tersedia = read_tersedia();
-            ?>
             <h5 style="margin-top: 5px;">Laboratorium yang tersedia hari ini</h5>
             <div class="wrap-card">
                 <?php foreach ($data_tersedia as $lab => $daftar_jam): ?>
