@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 13 Bulan Mei 2026 pada 09.51
+-- Waktu pembuatan: 13 Bulan Mei 2026 pada 16.51
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -77,31 +77,6 @@ CREATE TABLE `peminjaman` (
   `id_jam` int(3) DEFAULT NULL,
   `id_user` int(3) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `riwayat`
---
-
-CREATE TABLE `riwayat` (
-  `id_riwayat` int(3) NOT NULL,
-  `id_laboratorium` int(3) DEFAULT NULL,
-  `tanggal` date NOT NULL,
-  `id_jam` int(3) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data untuk tabel `riwayat`
---
-
-INSERT INTO `riwayat` (`id_riwayat`, `id_laboratorium`, `tanggal`, `id_jam`) VALUES
-(0, 2, '2026-05-13', 4),
-(6, 1, '2026-05-12', 1),
-(7, 1, '2026-05-12', 2),
-(8, 1, '2026-05-12', 3),
-(9, 1, '2026-05-12', 1),
-(10, 2, '2026-05-13', 2);
 
 -- --------------------------------------------------------
 
@@ -186,12 +161,6 @@ ALTER TABLE `peminjaman`
   ADD KEY `fk_peminjaman_user` (`id_user`);
 
 --
--- Indeks untuk tabel `riwayat`
---
-ALTER TABLE `riwayat`
-  ADD PRIMARY KEY (`id_riwayat`);
-
---
 -- Indeks untuk tabel `tersedia`
 --
 ALTER TABLE `tersedia`
@@ -211,7 +180,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT untuk tabel `peminjaman`
 --
 ALTER TABLE `peminjaman`
-  MODIFY `id_peminjaman` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id_peminjaman` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT untuk tabel `users`
