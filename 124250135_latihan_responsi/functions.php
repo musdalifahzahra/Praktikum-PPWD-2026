@@ -1,6 +1,30 @@
 <?php
 require "koneksi.php";
 
+function reset_tersedia()
+{
+    global $conn;
+
+    $today = date('Y-m-d');
+
+    mysqli_query($conn, "UPDATE tersedia SET status = '1'");
+
+    $query = "SELECT * FROM peminjaman WHERE tanggal = '$today'";
+    $peminjaman = mysqli_query($conn, $query);
+
+    while ($row = mysqli_fetch_assoc($peminjaman)) {
+
+        $id_lab = $row["id_laboratorium"];
+        $id_jam = $row["id_jam"];
+
+        mysqli_query($conn, "UPDATE tersedia 
+                             SET status = '0'
+                             WHERE id_lab = '$id_lab'
+                             AND id_jam = '$id_jam'");
+    }
+}
+
+
 // MEMBACA DATABASE
 function read_rows($query)
 {
@@ -145,8 +169,9 @@ function update_peminjaman($data)
     // 1. update tersedia
     // 1.1 baca data peminjaman sesui id biar tau sebelumnya dy minjam apa
     $read_peminjaman = "SELECT * FROM peminjaman WHERE id_peminjaman = '$id_peminjaman'";
-    $lab_sebelum = read_row($read_peminjaman)["id_laboratorium"];
-    $jam_sebelum = read_row($read_peminjaman)["id_jam"];
+    $peminjaman = read_row($read_peminjaman);
+$lab_sebelum = $peminjaman["id_laboratorium"];
+$jam_sebelum = $peminjaman["id_jam"];
 
     // 1.2 update tersedia yg sebelumnya
     $query_tersedia = "UPDATE tersedia SET

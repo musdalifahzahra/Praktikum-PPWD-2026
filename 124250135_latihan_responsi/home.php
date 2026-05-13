@@ -7,6 +7,8 @@ if (!isset($_SESSION["login"])) {
     exit();
 }
 
+reset_tersedia();
+
 if (isset($_GET["cari"])) {
     if (!empty($_GET["lab_cari"]) || !empty($_GET["jam_cari"])) {
         $data_tersedia = read_tersedia($_GET);
@@ -82,7 +84,10 @@ if (isset($_GET["cari"])) {
             <h5>Ajuan pinjaman saat ini</h5>
             <div class="wrap-card">
                 <?php
-                $read_peminjaman = "SELECT * FROM peminjaman ORDER BY id_peminjaman DESC LIMIT 5";
+                $today = date('Y-m-d');
+                $read_peminjaman = "SELECT * FROM peminjaman 
+                                    WHERE tanggal = '$today'
+                                    ORDER BY id_peminjaman DESC LIMIT 5";
                 $peminjaman = read_rows($read_peminjaman);
 
                 foreach ($peminjaman as $row):
