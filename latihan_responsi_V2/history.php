@@ -37,17 +37,17 @@ if (!isset($_SESSION["login"])) {
         <div class="wrap-riwayat">
             <h5 style="text-align: center;">Cek riwayat peminjamanmu disini</h5>
             <?php
-            $query = "SELECT * FROM riwayat";
-            $riwayat = read_rows($query);
+            $query = "SELECT * FROM peminjaman ORDER BY id_peminjaman  DESC";
+            $peminjaman = read_rows($query);
             ?>
             <div class="satu-riwayat th">
                 <span>ID</span>
                 <span>Laboratorium</span>
                 <span style="text-align: right;">Timestamp</span>
             </div>
-            <?php foreach ($riwayat as $row): ?>
+            <?php foreach ($peminjaman as $row): ?>
                 <div class="satu-riwayat">
-                    <span><?= $row["id_riwayat"] ?></span>
+                    <span><?= $row["id_peminjaman"] ?></span>
                     <?php
                     $id_lab = $row["id_laboratorium"];
                     $nama_lab = "SELECT  * FROM laboratorium WHERE id_laboratorium = '$id_lab'";

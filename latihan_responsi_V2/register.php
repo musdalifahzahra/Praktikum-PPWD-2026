@@ -30,7 +30,7 @@ if (isset($_POST["registrasi"])) {
         header("location: register.php");
         exit();
     } else if (strlen($password) < 6) {
-        $_SESSION["error_registrasi"] = "Password minimal terdiri dari 6 katakter!";
+        $_SESSION["error_registrasi"] = "Password minimal terdiri dari 6 karakter!";
         header("location: register.php");
         exit();
     } else {

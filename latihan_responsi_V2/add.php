@@ -20,10 +20,11 @@ if (isset($_POST["submit_pinjaman"])) {
         $_SESSION["error_ubah"] = "Waktu yang dipilih sudah tidak tersedia";
         header("location: add.php");
         exit();
-    }
-    if (create_peminjaman($_POST) > 0) {
-        header("location: home.php");
-        exit();
+    } else {
+        if (create_peminjaman($_POST) > 0) {
+            header("location: home.php");
+            exit();
+        }
     }
 }
 ?>

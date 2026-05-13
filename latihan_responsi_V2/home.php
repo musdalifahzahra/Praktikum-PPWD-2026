@@ -58,7 +58,7 @@ if (isset($_GET["cari"])) {
                         ?>
                     </select>
                     <button name="cari" class="tombol">Cari</button>
-                    <a href="home.php" class="tombol">Reset</a>
+                    <a href="home.php" class="tombol" style="text-decoration: none;">Reset</a>
                 </form>
             </div>
             <br>
@@ -102,7 +102,7 @@ if (isset($_GET["cari"])) {
                         ?>
 
                         <span><?= "Laboratorium " . read_row($nama_lab)["nama"] ?></span>
-                        <span><?= $row["tanggal"] . " " . read_row($nama_jam)["jam"] ?></span>
+                        <span style="font-size: small;"><?= $row["tanggal"] . " " . read_row($nama_jam)["jam"] ?></span>
                         <span class="jam satu-jam"> <?= read_row($nama_jam)["jam"] ?></span>
                         <div class="aksi">
                             <a href="delete.php?id_peminjaman=<?= $row["id_peminjaman"] ?>" class="tombol trans">Hapus</a>

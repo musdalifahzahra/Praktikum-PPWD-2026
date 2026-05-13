@@ -109,10 +109,10 @@ function create_peminjaman($data)
     $insert_peminjaman = mysqli_affected_rows($conn);
 
     // input tabel riwayat
-    $query = "INSERT INTO riwayat
-              VALUES ('', '$id_lab', '$tanggal', '$id_jam')";
-    mysqli_query($conn, $query);
-    $insert_riwayat = mysqli_affected_rows($conn);
+    // $query = "INSERT INTO riwayat
+    //           VALUES ('', '$id_lab', '$tanggal', '$id_jam')";
+    // mysqli_query($conn, $query);
+    // $insert_riwayat = mysqli_affected_rows($conn);
 
     // updayte tabel tersedia
     $query = "UPDATE tersedia SET
@@ -122,7 +122,7 @@ function create_peminjaman($data)
 
     $update_tersedia =  mysqli_affected_rows($conn);
 
-    return $insert_peminjaman + $insert_riwayat + $update_tersedia;
+    return $insert_peminjaman + $update_tersedia;
 }
 
 // UPDATE DATA
@@ -144,6 +144,7 @@ function update_peminjaman_ketersediaan($data)
     }
     return $ubah_peminjaman;
 }
+
 function update_peminjaman($data)
 {
     global $conn;
@@ -187,7 +188,8 @@ function update_peminjaman($data)
               WHERE id_riwayat = '$id_peminjaman'";
 
     mysqli_query($conn, $query);
-    return mysqli_affected_rows($conn);
+
+    // return mysqli_affected_rows($conn);
 }
 
 
